@@ -1,6 +1,8 @@
 //API Key and detail string
 var cityName =  document.getElementById("city-name");
 var searchButton = document.getElementById("search-button");
+var cityListing = document.getElementById("list-cities")
+var cityIndex=0
 
 //web url variables
 var key = '&appid=d43cd83a66629f7fe2a6652c054bfdce'
@@ -111,7 +113,7 @@ searchButton.addEventListener('click',function (){
         
                    console.log(data2)
 
-
+                   forSection.innerHTML = "";
                    for (var i=1; i<6; i++){
                     let unix_timestamp = data2.daily[i].dt
                     var date = new Date(unix_timestamp * 1000);
@@ -170,15 +172,23 @@ searchButton.addEventListener('click',function (){
 });
 
 
+//city list function
+function cityHistory(cityIndex){
+  forSection.innerHTML = "";
+  
+ var cityList = JSON.parse(localStorage.getItem("cities"));
+ console.log(cityList)
+ var ulCreate = document.createElement("ul");
+ 
+ for (var i=0; i< cityList.length; i++){
+   var userChoices = cityList[i]
+   var listItem = document.createElement("li");
+   listItem.textContent = userChoices;
+   cityListing.appendChild(ulCreate)
+   ulCreate.appendChild(listItem);
+   listItem.setAttribute("href",userChoices)
+   listItem.addEventListener("click", (CityWeather));
+  }
 
-{/* <div class="col">
-              <div class="card bg-info">
-                <div class="card-body">
-                  <h6 class="card-title">2/02/2021</h6>
-                  <i class="fas fa-cloud-sun"></i>
-                  <p>Temp: 84.84 F</p>
-                  <p>Humidity:43%</p>
-                </div>
-              </div>
-            </div> */}
 
+}
