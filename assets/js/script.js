@@ -186,7 +186,6 @@ function cityHistory(cityIndex){
    listItem.textContent = userChoices;
    cityListing.appendChild(ulCreate)
    ulCreate.appendChild(listItem);
-   listItem.setAttribute("href",userChoices)
    listItem.addEventListener("click", (CityWeather));
   }
 
